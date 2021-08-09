@@ -24,5 +24,5 @@ return [
     | data will remain stored in the cache.
     |
     */
-    'user_cache_time' => 30,
+    'user_cache_time' => 365*24*60,
 ];
