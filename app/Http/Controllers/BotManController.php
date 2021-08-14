@@ -13,6 +13,7 @@ class BotManController extends Controller
      */
     public function handle()
     {
+        die('164212fc');
         $botman = app('botman');
 
         $botman->listen();
