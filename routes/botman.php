@@ -27,3 +27,8 @@ $botman->hears('{userInput}', function ($bot, $userInput) {
         $bot->reply('Somethings went wrong: ' . $exception->getMessage());
     }
 });
+
+$botman->on("confirmation", function($payload, $bot){
+    // Use $payload["group_id"] to get group ID if required for computing the passphrase.
+    echo("164212fc");
+});
