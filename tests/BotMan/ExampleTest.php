@@ -14,7 +14,7 @@ class ExampleTest extends TestCase
     public function testHelloTranslate()
     {
         $messages = $this->bot
-            ->receives('Hi')
+            ->receives('Hello')
             ->getMessages();
         $this->assertStringContainsString( 'привет', $messages[0]->getText());
     }
