@@ -34,4 +34,12 @@ final class Translation
             )
         );
     }
+
+    public function example(): array
+    {
+        return [
+            'en' => strip_tags($this->context->examples()[0]['source']),
+            'ru' => strip_tags($this->context->examples()[0]['target'])
+        ];
+    }
 }

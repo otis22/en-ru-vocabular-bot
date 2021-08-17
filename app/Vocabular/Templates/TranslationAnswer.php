@@ -6,6 +6,7 @@ namespace App\Vocabular\Templates;
 
 use App\Vocabular\Translation;
 use ElegantBro\Interfaces\Stringify;
+use SebastianBergmann\CodeCoverage\Report\PHP;
 
 final class TranslationAnswer implements Stringify
 {
@@ -24,7 +25,10 @@ final class TranslationAnswer implements Stringify
      */
     public function asString(): string
     {
-        return "Перевод: {$this->translation->word()}."
-            . " Синонимы: {$this->translation->synonyms()}";
+        return "Перевод: {$this->translation->word()}." . PHP_EOL
+            . " Синонимы: {$this->translation->synonyms()}" . PHP_EOL
+            . "Пример использования: " . PHP_EOL
+            . "En - {$this->translation->example()['en']} " . PHP_EOL
+            . "Ru - {$this->translation->example()['ru']}";
     }
 }
