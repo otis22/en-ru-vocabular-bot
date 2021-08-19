@@ -3,6 +3,8 @@
 /public/storage
 /storage/*.key
 /storage/*.log
+/storage/*.json
+/storage/botman
 /vendor
 /.idea
 /.vagrant

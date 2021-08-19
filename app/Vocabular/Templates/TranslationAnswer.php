@@ -28,7 +28,7 @@ final class TranslationAnswer implements Stringify
         return "Перевод: {$this->translation->word()}." . PHP_EOL
             . "Синонимы: {$this->translation->synonyms()}" . PHP_EOL
             . "Пример использования: " . PHP_EOL
-            . "En - {$this->translation->example()['en']} " . PHP_EOL
+            . "En - {$this->translation->example()['en']}" . PHP_EOL
             . "Ru - {$this->translation->example()['ru']}";
     }
 }
