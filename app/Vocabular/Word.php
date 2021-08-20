@@ -39,6 +39,8 @@ final class Word implements Stringify
         if ($this->isNotEnglish()) {
             throw new \InvalidArgumentException("Bot work only with english words");
         }
-        return $this->word;
+        return trim(
+            strtolower($this->word)
+        );
     }
 }

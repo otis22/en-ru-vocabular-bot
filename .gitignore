@@ -5,6 +5,7 @@
 /storage/*.log
 /storage/*.json
 /storage/botman
+/storage/logs
 /vendor
 /.idea
 /.vagrant

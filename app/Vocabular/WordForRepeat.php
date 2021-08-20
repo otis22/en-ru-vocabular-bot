@@ -52,6 +52,21 @@ final class WordForRepeat implements Arrayee
         );
     }
 
+    public function isEqual(Word $word): bool
+    {
+        return $word->asString() === $this->word->asString();
+    }
+
+    public function touch(): self
+    {
+        return new self(
+            $this->word,
+            $this->createDate,
+            time(),
+            $this->repeatedTimes + 1
+        );
+    }
+
     public function asArray(): array
     {
         return [

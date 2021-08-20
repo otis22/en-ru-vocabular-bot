@@ -9,8 +9,7 @@ use Otis22\Reverso\Context;
 use App\Vocabular\Word;
 use App\Vocabular\Templates\TranslationAnswer;
 use App\Vocabular\Translation;
-use App\Vocabular\UserVocabulary;
-use App\Vocabular\VocabularyStorage;
+use App\Vocabular\User;
 
 final class VocabularyController extends Controller
 {
@@ -27,7 +26,8 @@ final class VocabularyController extends Controller
                 )
                 )->asString()
             );
-            $this->addToUserVocabulary($word, $bot->userStorage());
+            $this->saveUserInfo($bot);
+            $this->addWordToVocabulary($word, $bot->userStorage());
         } catch (\Throwable $exception) {
             $bot->reply('Somethings went wrong: ' . $exception->getMessage());
         }
@@ -42,12 +42,16 @@ final class VocabularyController extends Controller
         );
     }
 
-    private function addToUserVocabulary(Word $word, Storage $storage): void
+    private function saveUserInfo(BotMan $bot): void
     {
-        $userVocabulary = new UserVocabulary(
-            new VocabularyStorage($storage)
-        );
-        $userVocabulary->add($word);
+        User\Information::fromBotInfo($bot)
+            ->save($bot->userStorage());
     }
 
+    private function addWordToVocabulary(Word $word, Storage $storage): void
+    {
+        User\Vocabulary::fromStorage($storage)
+            ->add($word)
+            ->save($storage);
+    }
 }
