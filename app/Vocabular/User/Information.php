@@ -26,7 +26,9 @@ final class Information implements Arrayee
     public static function fromBotInfo(BotMan $bot): self
     {
         return new self(
-            $bot->getUser()->getId(),
+            strval(
+                $bot->getUser()->getId()
+            ),
             $bot->getDriver()->getName()
         );
     }
