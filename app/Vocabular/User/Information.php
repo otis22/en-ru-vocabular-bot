@@ -33,11 +33,6 @@ final class Information implements Arrayee
         );
     }
 
-    public function save(Storage $storage): void
-    {
-        $storage->save($this->asArray());
-    }
-
     public function asArray(): array
     {
         return [

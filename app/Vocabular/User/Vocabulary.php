@@ -72,11 +72,6 @@ final class Vocabulary implements Arrayee
         );
     }
 
-    public function save(Storage $storage): void
-    {
-        $storage->save($this->asArray());
-    }
-
     public function asArray(): array
     {
         return [

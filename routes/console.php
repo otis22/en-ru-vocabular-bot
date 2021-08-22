@@ -25,5 +25,8 @@ Artisan::command('hello', function (){
 Artisan::command('repeating', function (){
     $bot = resolve('botman');
     $collectionsOfUsers = $bot->userStorage()->all();
-    var_dump($collectionsOfUsers);
+    foreach ($collectionsOfUsers as $userStorage) {
+        var_dump($userStorage->get('vocabulary'));
+    }
+
 })->describe('Run repeating words for all users');

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
+use App\Vocabular\UserStorage;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Storages\Storage;
 use Otis22\Reverso\Context;
@@ -26,9 +27,9 @@ final class VocabularyController extends Controller
                 )
                 )->asString()
             );
-            $bot->reply(get_class($bot->userStorage()));
-            $this->saveUserInfo($bot);
-            $this->addWordToVocabulary($word, $bot->userStorage());
+            UserStorage::fromBotMan($bot)
+                ->addWordToVocabulary($word)
+                ->save();
         } catch (\Throwable $exception) {
             $bot->reply('Somethings went wrong: ' . $exception->getMessage());
         }
@@ -41,18 +42,5 @@ final class VocabularyController extends Controller
             "ru",
             $word->asString()
         );
-    }
-
-    private function saveUserInfo(BotMan $bot): void
-    {
-        User\Information::fromBotInfo($bot)
-            ->save($bot->userStorage());
-    }
-
-    private function addWordToVocabulary(Word $word, Storage $storage): void
-    {
-        User\Vocabulary::fromStorage($storage)
-            ->add($word)
-            ->save($storage);
     }
 }
