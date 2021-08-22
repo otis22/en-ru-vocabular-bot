@@ -26,6 +26,7 @@ final class VocabularyController extends Controller
                 )
                 )->asString()
             );
+            $bot->reply(get_class($bot->userStorage()));
             $this->saveUserInfo($bot);
             $this->addWordToVocabulary($word, $bot->userStorage());
         } catch (\Throwable $exception) {
