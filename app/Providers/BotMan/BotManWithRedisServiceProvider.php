@@ -40,10 +40,6 @@ class BotManWithRedisServiceProvider extends ServiceProvider
     {
         return config('app.env') === 'test'
                 ? new FileStorage(storage_path('botman'))
-                : new RedisStorage(
-                    config('database.redis.default.host'),
-                    config('database.redis.default.port'),
-                    config('database.redis.default.password')
-                );
+                : resolve('redisStorage');
     }
 }

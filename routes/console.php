@@ -1,7 +1,9 @@
 <?php
 
+use BotMan\BotMan\Storages\Drivers\RedisStorage;
 use Illuminate\Foundation\Inspiring;
-
+use App\Vocabular\User;
+use App\Vocabular\UserStorage;
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -25,8 +27,8 @@ Artisan::command('hello', function (){
 Artisan::command('repeating', function (){
     $bot = resolve('botman');
     $collectionsOfUsers = $bot->userStorage()->all();
-    foreach ($collectionsOfUsers as $userStorage) {
-        var_dump($userStorage->get('vocabulary'));
+    foreach ($collectionsOfUsers as $userData) {
+        $userInformation = User\Information::fromArray($userData->get('information'));
+        $userStorage = UserStorage::fromUserInformation($userInformation);
     }
-
 })->describe('Run repeating words for all users');

@@ -35,10 +35,30 @@ final class UserStorage
         );
     }
 
+    public static function fromUserInformation(User\Information $information): self
+    {
+        $storage = new Storage(resolve('redisStorage'));
+        $storage->setPrefix('user_')
+            ->setDefaultKey($information->asArray()['information']['sender']);
+        return new self(
+            $storage,
+            $information,
+            User\Vocabulary::fromStorage($storage)
+        );
+    }
+
+    public function vocabulary(): User\Vocabulary
+    {
+        return $this->vocabulary;
+    }
+
     public function addWordToVocabulary(Word $word): self
     {
-        $this->vocabulary = $this->vocabulary->add($word);
-        return $this;
+        return new self(
+            $this->storage,
+            $this->information,
+            $this->vocabulary->add($word)
+        );
     }
 
     public function save(): void
