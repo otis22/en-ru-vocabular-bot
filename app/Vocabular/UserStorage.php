@@ -47,22 +47,22 @@ final class UserStorage
         );
     }
 
-    public function vocabulary(): User\Vocabulary
+    public function addWordToVocabulary(Word $word): void
     {
-        return $this->vocabulary;
+        $this->vocabulary = $this->vocabulary->add($word);
+        $this->save();
     }
 
-    public function addWordToVocabulary(Word $word): self
+    public function repeatWord(): WordForRepeat
     {
-        return new self(
-            $this->storage,
-            $this->information,
-            $this->vocabulary->add($word)
-        );
+        $wordForRepeat = $this->vocabulary->wordForRepeat();
+        $this->save();
+        return $wordForRepeat;
     }
 
-    public function save(): void
+    private function save(): void
     {
+        var_dump('save', $this->vocabulary->asArray());
         $this->storage->save(
             array_merge_recursive(
                 $this->vocabulary->asArray(),

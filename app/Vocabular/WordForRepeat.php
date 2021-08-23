@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Vocabular;
 
+use App\Vocabular\Exceptions\MaxRepeatedTimesException;
 use ElegantBro\Interfaces\Arrayee;
 
 final class WordForRepeat implements Arrayee
 {
+    private const MAX_REPEATED_TIMES = 5;
     private Word $word;
     private int $createDate;
     private int $lastRepeatDate;
@@ -57,13 +59,22 @@ final class WordForRepeat implements Arrayee
         return $word->asString() === $this->word->asString();
     }
 
+    public function isFresher(WordForRepeat $wordForRepeat): int
+    {
+        return $this->lastRepeatDate <=> $wordForRepeat->asArray()['lastRepeatDate'];
+    }
+
     public function touch(): self
     {
+        $repeatedTimesAfterTouch = $this->repeatedTimes + 1;
+        if ($repeatedTimesAfterTouch > self::MAX_REPEATED_TIMES) {
+            throw new MaxRepeatedTimesException("It's enough! I think you know this word!");
+        }
         return new self(
             $this->word,
             $this->createDate,
             time(),
-            $this->repeatedTimes + 1
+            $repeatedTimesAfterTouch
         );
     }
 

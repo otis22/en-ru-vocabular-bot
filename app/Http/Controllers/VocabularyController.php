@@ -28,8 +28,7 @@ final class VocabularyController extends Controller
                 )->asString()
             );
             UserStorage::fromBotMan($bot)
-                ->addWordToVocabulary($word)
-                ->save();
+                ->addWordToVocabulary($word);
         } catch (\Throwable $exception) {
             $bot->reply('Somethings went wrong: ' . $exception->getMessage());
         }

@@ -30,5 +30,8 @@ Artisan::command('repeating', function (){
     foreach ($collectionsOfUsers as $userData) {
         $userInformation = User\Information::fromArray($userData->get('information'));
         $userStorage = UserStorage::fromUserInformation($userInformation);
+        $repeatWord = $userStorage->repeatWord();
+        //var_dump($userData->get('vocabulary'));
+        var_dump($repeatWord->asArray());
     }
 })->describe('Run repeating words for all users');
