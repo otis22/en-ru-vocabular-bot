@@ -10,3 +10,9 @@ make serve
 # чтобы запустить тесты, в соседнем табе выполнить
 make all
 ```
+
+Are you collaborator the heroku app?
+```shell
+heroku run -aen-ru-vocabulary-bot bash
+heroku vim -aen-ru-vocabulary-bot
+```

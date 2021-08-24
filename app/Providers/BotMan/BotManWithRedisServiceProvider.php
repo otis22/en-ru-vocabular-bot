@@ -9,8 +9,6 @@ use BotMan\BotMan\Cache\LaravelCache;
 use BotMan\BotMan\Container\LaravelContainer;
 use BotMan\BotMan\Interfaces\StorageInterface;
 use BotMan\BotMan\Storages\Drivers\FileStorage;
-use BotMan\BotMan\Storages\Drivers\RedisStorage;
-use BotMan\BotMan\Storages\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class BotManWithRedisServiceProvider extends ServiceProvider
