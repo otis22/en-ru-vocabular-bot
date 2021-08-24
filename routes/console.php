@@ -25,13 +25,22 @@ Artisan::command('hello', function (){
 
 
 Artisan::command('repeating', function (){
+    /**
+     * @var \BotMan\BotMan\BotMan
+     */
     $bot = resolve('botman');
     $collectionsOfUsers = $bot->userStorage()->all();
     foreach ($collectionsOfUsers as $userData) {
         $userInformation = User\Information::fromArray($userData->get('information'));
         $userStorage = UserStorage::fromUserInformation($userInformation);
-        $repeatWord = $userStorage->repeatWord();
-        //var_dump($userData->get('vocabulary'));
-        var_dump($repeatWord->asArray());
+        try {
+            $repeatWord = $userStorage->repeatWord();
+        } catch (\Throwable $exception) {
+            $bot->say(
+                $exception->getMessage(),
+                $userInformation->asArray()['information']['sender']
+            );
+        }
+
     }
 })->describe('Run repeating words for all users');

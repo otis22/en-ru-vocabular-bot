@@ -62,7 +62,6 @@ final class UserStorage
 
     private function save(): void
     {
-        var_dump('save', $this->vocabulary->asArray());
         $this->storage->save(
             array_merge_recursive(
                 $this->vocabulary->asArray(),
