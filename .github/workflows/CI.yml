@@ -17,6 +17,10 @@ jobs:
           extensions: mbstring, gd, zip
           ini-values: max_execution_time=600, memory_limit=-1
           coverage: xdebug
+      - name: Create env file
+        run: |
+          cp .env.test .env
+          cat .env
       - name: Validate composer.json
         run: |
           curl -sS https://getcomposer.org/installer | php -- --filename=composer
@@ -24,10 +28,6 @@ jobs:
       - name: Install dependency
         run: |
           composer install
-      - name: Create env file
-        run: |
-          cp .env.test .env
-          cat .env
       - name: Run Unit tests
         run: |
           composer unit
