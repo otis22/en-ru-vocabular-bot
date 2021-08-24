@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 use App\Vocabular\UserStorage;
 use BotMan\BotMan\BotMan;
-use BotMan\BotMan\Storages\Storage;
 use Otis22\Reverso\Context;
 use App\Vocabular\Word;
 use App\Vocabular\Templates\TranslationAnswer;
 use App\Vocabular\Translation;
-use App\Vocabular\User;
 
 final class VocabularyController extends Controller
 {

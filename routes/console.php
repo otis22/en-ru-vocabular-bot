@@ -33,14 +33,17 @@ Artisan::command('repeating', function (){
     foreach ($collectionsOfUsers as $userData) {
         $userInformation = User\Information::fromArray($userData->get('information'));
         $userStorage = UserStorage::fromUserInformation($userInformation);
-        try {
-            $repeatWord = $userStorage->repeatWord();
-        } catch (\Throwable $exception) {
-            $bot->say(
-                $exception->getMessage(),
-                $userInformation->asArray()['information']['sender']
-            );
-        }
+        var_dump(
+            $userInformation->asArray()
+        );
+        #try {
+        #    $repeatWord = $userStorage->repeatWord();
+        #} catch (\Throwable $exception) {
+        #    $bot->say(
+        #        $exception->getMessage(),
+        #        $userInformation->asArray()['information']['sender'],
+        #    );
+        #}
 
     }
 })->describe('Run repeating words for all users');

@@ -23,11 +23,15 @@ class RedisStorageProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('redisStorage', function ($app) {
-            return new RedisStorage(
-                config('database.redis.default.host'),
-                config('database.redis.default.port'),
-                config('database.redis.default.password')
-            );
+            try {
+                return new RedisStorage(
+                    config('database.redis.default.host'),
+                    config('database.redis.default.port'),
+                    config('database.redis.default.password')
+                );
+            } catch (\Throwable $exception) {
+                echo "Can't init redis: " . $exception->getMessage();
+            }
         });
     }
 }
