@@ -38,6 +38,7 @@ class BotManWithRedisServiceProvider extends ServiceProvider
 
     private function storage(): StorageInterface
     {
+        var_dump(config('app.env'));
         return config('app.env') === 'test'
                 ? new FileStorage(storage_path('botman'))
                 : resolve('redisStorage');
