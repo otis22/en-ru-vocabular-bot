@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59226718ffa21445f66ac171ba6ec83a",
+    "content-hash": "20997ec2d5c7bc1cb25806958b5dd529",
     "packages": [
         {
             "name": "botman/botman",
@@ -1868,16 +1868,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f3ad69181b8afed2c9edf7be5a2918144ff4ea32"
+                "reference": "18634df356bfd4119fe3d6156bdb990c414c14ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3ad69181b8afed2c9edf7be5a2918144ff4ea32",
-                "reference": "f3ad69181b8afed2c9edf7be5a2918144ff4ea32",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/18634df356bfd4119fe3d6156bdb990c414c14ea",
+                "reference": "18634df356bfd4119fe3d6156bdb990c414c14ea",
                 "shasum": ""
             },
             "require": {
@@ -1950,7 +1950,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/1.1.4"
+                "source": "https://github.com/thephpleague/flysystem/tree/1.1.5"
             },
             "funding": [
                 {
@@ -1958,7 +1958,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-06-23T21:56:05+00:00"
+            "time": "2021-08-17T13:49:42+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -6264,16 +6264,16 @@
         },
         {
             "name": "yageorgiy/botman-vk-community-callback-driver",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yageorgiy/botman-vk-community-callback-driver.git",
-                "reference": "92320179b3bad9eccf09b3e91c51cb00c908bc51"
+                "reference": "681d008eeb38d0183215558dca843ff7a716c2e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yageorgiy/botman-vk-community-callback-driver/zipball/92320179b3bad9eccf09b3e91c51cb00c908bc51",
-                "reference": "92320179b3bad9eccf09b3e91c51cb00c908bc51",
+                "url": "https://api.github.com/repos/yageorgiy/botman-vk-community-callback-driver/zipball/681d008eeb38d0183215558dca843ff7a716c2e8",
+                "reference": "681d008eeb38d0183215558dca843ff7a716c2e8",
                 "shasum": ""
             },
             "require": {
@@ -6332,9 +6332,9 @@
             ],
             "support": {
                 "issues": "https://github.com/yageorgiy/botman-vk-community-callback-driver/issues",
-                "source": "https://github.com/yageorgiy/botman-vk-community-callback-driver/tree/1.7.5"
+                "source": "https://github.com/yageorgiy/botman-vk-community-callback-driver/tree/1.7.6"
             },
-            "time": "2021-04-03T10:55:47+00:00"
+            "time": "2021-08-16T21:00:45+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -8413,7 +8413,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "ext-redis": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

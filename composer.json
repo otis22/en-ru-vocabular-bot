@@ -11,7 +11,7 @@
     "type": "project",
     "require": {
         "php": "^7.4",
-        "ext-redis": "^3.0.0",
+        "ext-redis": "*",
         "botman/botman": "~2.0",
         "botman/driver-telegram": "^1.6",
         "botman/driver-web": "~1.0",
