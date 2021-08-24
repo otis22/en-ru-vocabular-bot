@@ -19,7 +19,7 @@ jobs:
           coverage: xdebug
       - name: Create env file
         run: |
-          cp .env.test .env
+          cp .env.testing .env
           cat .env
       - name: Validate composer.json
         run: |

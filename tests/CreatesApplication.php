@@ -19,7 +19,7 @@ trait CreatesApplication
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
-
+        $app->loadEnvironmentFrom('.env');
         DriverManager::loadDriver(ProxyDriver::class);
         $fakeDriver = new FakeDriver();
         ProxyDriver::setInstance($fakeDriver);

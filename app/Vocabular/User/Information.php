@@ -29,20 +29,18 @@ final class Information implements Arrayee
     public static function fromBotInfo(BotMan $bot): self
     {
         return new self(
-            strval(
-                $bot->getUser()->getId()
-            ),
-            $bot->getDriver()->getName(),
-            $bot->getMessage()->getSender()
+            (string) $bot->getUser()->getId(),
+            (string) $bot->getDriver()->getName(),
+            (string) $bot->getMessage()->getSender()
         );
     }
 
     public static function fromArray(array $information): self
     {
         return new self(
-            $information['userId'],
-            $information['driver'],
-            $information['sender']
+            (string) $information['userId'],
+            (string) $information['driver'],
+            (string) $information['sender']
         );
     }
 
