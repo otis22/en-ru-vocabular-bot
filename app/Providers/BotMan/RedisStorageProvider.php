@@ -22,7 +22,7 @@ class RedisStorageProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('redisStorage', function ($app) {
+        $this->app->singleton('redisStorage', function () {
             return new RedisStorage(
                 config('database.redis.default.host'),
                 config('database.redis.default.port'),
