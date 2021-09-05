@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Vocabular\User;
 
 use BotMan\BotMan\BotMan;
+use BotMan\Drivers\Telegram\TelegramDriver;
+use BotMan\Drivers\VK\VkCommunityCallbackDriver;
 use ElegantBro\Interfaces\Arrayee;
 
 final class Information implements Arrayee
@@ -42,6 +44,22 @@ final class Information implements Arrayee
             (string) $information['driver'],
             (string) $information['sender']
         );
+    }
+
+    public function userId(): string
+    {
+        return $this->userId;
+    }
+
+    public function botDriverClass(): string
+    {
+        if ($this->driver === 'VkCommunityCallback') {
+            return VkCommunityCallbackDriver::class;
+        }
+        if ($this->driver === 'Telegram') {
+            return TelegramDriver::class;
+        }
+        throw new \Exception("Driver " . $this->driver . " is unknown");
     }
 
     public function asArray(): array

@@ -78,6 +78,11 @@ final class WordForRepeat implements Arrayee
         );
     }
 
+    public function parsedTemplate(string $template): string
+    {
+        return sprintf($template, $this->word->asString());
+    }
+
     public function asArray(): array
     {
         return [

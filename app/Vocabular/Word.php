@@ -18,6 +18,14 @@ final class Word implements Stringify
         $this->word = $word;
     }
 
+    public static function fromButtonValue(string $value): self
+    {
+        $exploded = explode("_", $value);
+        return new self(
+            $exploded[array_key_last($exploded)]
+        );
+    }
+
     private function isNotEnglish(): bool
     {
         return strlen($this->word) !== strlen(utf8_decode($this->word));

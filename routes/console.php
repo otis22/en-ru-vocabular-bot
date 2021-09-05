@@ -1,9 +1,11 @@
 <?php
 
-use BotMan\BotMan\Storages\Drivers\RedisStorage;
 use Illuminate\Foundation\Inspiring;
 use App\Vocabular\User;
 use App\Vocabular\UserStorage;
+use App\Vocabular\Messages;
+use App\Vocabular\Templates;
+
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -33,17 +35,20 @@ Artisan::command('repeating', function (){
     foreach ($collectionsOfUsers as $userData) {
         $userInformation = User\Information::fromArray($userData->get('information'));
         $userStorage = UserStorage::fromUserInformation($userInformation);
-        var_dump(
-            $userInformation->asArray()
-        );
-        #try {
-        #    $repeatWord = $userStorage->repeatWord();
-        #} catch (\Throwable $exception) {
-        #    $bot->say(
-        #        $exception->getMessage(),
-        #        $userInformation->asArray()['information']['sender'],
-        #    );
-        #}
-
+        try {
+            $message = new Messages\Repeating(
+                new Templates\RepeatWord(
+                    $userStorage->repeatWord()
+                ),
+                $bot,
+                $userInformation
+            );
+            $message->send();
+        } catch (\Throwable $e) {
+            $error_message = "Caught exception: " . $e->getMessage()
+                . ". For user: " . json_encode($userInformation->asArray());
+            error_log($error_message);
+            echo $error_message . "\n";
+        }
     }
 })->describe('Run repeating words for all users');
