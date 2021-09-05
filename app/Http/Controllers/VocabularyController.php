@@ -30,7 +30,7 @@ final class VocabularyController extends Controller
                 ->addWordToVocabulary($word);
         } catch (\Throwable $exception) {
             error_log('Somethings went wrong: ' . $exception->getMessage());
-            $bot->reply("Я понимаю только слова на английском языке. Напишите одно слово на английском, я его пришлю перевод и помогу его выучить.");
+            $bot->reply("Я понимаю только слова на английском языке. Напишите одно слово на английском и я переведу. Я буду напоминать вам слова, которые для вас переводил.");
         }
     }
 
