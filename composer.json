@@ -12,6 +12,7 @@
     "require": {
         "php": "^7.4",
         "ext-redis": "*",
+        "ext-json": "*",
         "botman/botman": "~2.0",
         "botman/driver-telegram": "^1.6",
         "botman/driver-web": "~1.0",
