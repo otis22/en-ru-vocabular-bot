@@ -29,7 +29,8 @@ final class VocabularyController extends Controller
             UserStorage::fromBotMan($bot)
                 ->addWordToVocabulary($word);
         } catch (\Throwable $exception) {
-            $bot->reply('Somethings went wrong: ' . $exception->getMessage());
+            error_log('Somethings went wrong: ' . $exception->getMessage());
+            $bot->reply("Я понимаю только слова на английском языке. Напишите одно слово на английском, я его пришлю перевод и помогу его выучить.");
         }
     }
 
