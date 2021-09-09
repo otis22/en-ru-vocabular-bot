@@ -78,6 +78,12 @@ final class WordForRepeat implements Arrayee
         );
     }
 
+    public function lastRepeat(): \DateTime
+    {
+        return date_create()
+            ->setTimestamp($this->lastRepeatDate);
+    }
+
     public function parsedTemplate(string $template): string
     {
         return sprintf($template, $this->word->asString());

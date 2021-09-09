@@ -90,6 +90,12 @@ final class Vocabulary implements Arrayee
         return array_values((array) $vocabulary);
     }
 
+    public function lastUpdateDate(): \DateTime {
+        return $this->vocabulary[
+            count($this->vocabulary) - 1
+        ]->lastRepeat();
+    }
+
     public function wordForRepeat(): WordForRepeat
     {
         if (empty($this->vocabulary)) {

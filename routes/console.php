@@ -60,7 +60,7 @@ Artisan::command('statistics', function () {
     $collections = $bot->userStorage()->all();
     echo "Count of users: " . count($collections);
     echo "\n";
-    echo "Tinker users: " . count(
+    echo "Real users: " . count(
         array_filter(
             $collections,
             function ($userData) {
@@ -83,4 +83,11 @@ Artisan::command('statistics', function () {
         }
     );
     echo "\n";
+    foreach ($collections as $userData) {
+        $userInformation = User\Information::fromArray($userData->get('information'));
+        $vocabulary = new User\Vocabulary($userData->get('vocabulary'));
+        echo $userInformation->userId() . " has " . count($userData->get('vocabulary')). " words, last update date is " . $vocabulary->lastUpdateDate()->format("d.m.Y");
+        echo "\n";
+    }
+    
 });

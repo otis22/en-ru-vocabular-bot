@@ -26,8 +26,10 @@ final class VocabularyController extends Controller
                 $bot
             );
             $message->send();
-            UserStorage::fromBotMan($bot)
-                ->addWordToVocabulary($word);
+            if (!$this->isRepeatingWord()) {
+                UserStorage::fromBotMan($bot)
+                    ->addWordToVocabulary($word);
+            }
         } catch (\Throwable $exception) {
             error_log('Somethings went wrong: ' . $exception->getMessage());
             $bot->reply("Я понимаю только слова на английском языке. Напишите одно слово на английском и я переведу. Я буду напоминать вам слова, которые для вас переводил.");
