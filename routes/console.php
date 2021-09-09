@@ -25,7 +25,6 @@ Artisan::command('hello', function (){
     echo "Hello world";
 })->describe('Hello world');
 
-
 Artisan::command('repeating', function (){
     /**
      * @var \BotMan\BotMan\BotMan
@@ -52,3 +51,36 @@ Artisan::command('repeating', function (){
         }
     }
 })->describe('Run repeating words for all users');
+
+Artisan::command('statistics', function () {
+    /**
+     * @var \BotMan\BotMan\BotMan
+     */
+    $bot = resolve('botman');
+    $collections = $bot->userStorage()->all();
+    echo "Count of users: " . count($collections);
+    echo "\n";
+    echo "Tinker users: " . count(
+        array_filter(
+            $collections,
+            function ($userData) {
+                try {
+                    User\Information::fromArray(
+                        $userData->get('information')
+                    )->botDriverClass();
+                    return true;
+                } catch (\Throwable $exception) {
+                    return false;
+                }
+            }
+        )
+    );
+    echo "\n";
+    echo "Count of words " . array_reduce(
+        $collections,
+        function ($carry, $item) {
+            return $carry + count($item->get('vocabulary'));
+        }
+    );
+    echo "\n";
+});
