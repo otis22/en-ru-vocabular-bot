@@ -86,8 +86,13 @@ Artisan::command('statistics', function () {
     foreach ($collections as $userData) {
         $userInformation = User\Information::fromArray($userData->get('information'));
         $vocabulary = new User\Vocabulary($userData->get('vocabulary'));
-        echo $userInformation->userId() . " has " . count($userData->get('vocabulary')). " words, last update date is " . $vocabulary->lastUpdateDate()->format("d.m.Y");
+        try {
+            $updateDate = $vocabulary->lastUpdateDate()->format("d.m.Y");
+        } catch (\Throwable $exception) {
+            $updateDate = 'undefined';
+        }
+        echo $userInformation->userId() . " has " . count($userData->get('vocabulary')). " words, last update date is " . $updateDate;
         echo "\n";
     }
-    
+
 });

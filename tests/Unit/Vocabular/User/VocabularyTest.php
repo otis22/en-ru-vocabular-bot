@@ -103,4 +103,28 @@ final class VocabularyTest extends TestCase
             count($sut->asArray()['vocabulary'])
         );
     }
+
+    public function testSortVocabularyLastUpdateByLastRepeatDate(): void
+    {
+        $sut = new Vocabulary(
+            [
+                new WordForRepeat(
+                    new Word('fresher'),
+                    1631193205,
+                    1631193205, // 2021-09-09
+                    0
+                ),
+                new WordForRepeat(
+                    new Word('older'),
+                    1631153205,
+                    1631153205, //2021-09-08
+                    0
+                )
+            ]
+        );
+        $this->assertEquals(
+            "2021-09-09",
+            $sut->lastUpdateDate()->format("Y-m-d")
+        );
+    }
 }

@@ -90,7 +90,11 @@ final class Vocabulary implements Arrayee
         return array_values((array) $vocabulary);
     }
 
-    public function lastUpdateDate(): \DateTime {
+    public function lastUpdateDate(): \DateTime
+    {
+        if (empty($this->vocabulary)) {
+            throw new VocabularyIsEmptyException("Vocabulary is empty. You've learned all words! Please enter new words");
+        }
         return $this->vocabulary[
             count($this->vocabulary) - 1
         ]->lastRepeat();
