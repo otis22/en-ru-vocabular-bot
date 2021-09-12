@@ -96,3 +96,27 @@ Artisan::command('statistics', function () {
     }
 
 });
+
+
+Artisan::command('news', function (){
+    /**
+     * @var \BotMan\BotMan\BotMan
+     */
+    $bot = resolve('botman');
+    $collectionsOfUsers = $bot->userStorage()->all();
+    foreach ($collectionsOfUsers as $userData) {
+        $userInformation = User\Information::fromArray($userData->get('information'));
+        try {
+            $bot->say(
+                "Всем привет! Последние дни бот не напоминал слова. Исправил :) можно учить дальше. Моя телега @vromanichev24, пишите.",
+                $userInformation->userId(),
+                $userInformation->botDriverClass()
+            );
+        } catch (\Throwable $exception) {
+            $error_message = "Caught exception: " . $exception->getMessage()
+                . ". For user: " . json_encode($userInformation->asArray());
+            error_log($error_message);
+            echo $error_message . "\n";
+        }
+    }
+})->describe('Run repeating words for all users');
