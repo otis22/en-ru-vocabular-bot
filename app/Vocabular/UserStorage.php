@@ -39,7 +39,7 @@ final class UserStorage
     {
         $storage = new Storage(resolve('redisStorage'));
         $storage->setPrefix('user_')
-            ->setDefaultKey($information->asArray()['informatecho ""ion']['sender']);
+            ->setDefaultKey($information->asArray()['information']['sender']);
         return new self(
             $storage,
             $information,
